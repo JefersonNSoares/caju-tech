@@ -19,9 +19,9 @@
 
 **Purpose**: Inicialização do ecossistema Expo, configurações universais e dependências principais.
 
-- [ ] T001 Initialize Expo project configuration and root files in package.json, app.json, babel.config.js, and metro.config.js
-- [ ] T002 Install core dependencies (expo, expo-router, react-native-web, react-dom, nativewind, tailwindcss, @expo/vector-icons, @react-native-community/netinfo, @react-native-async-storage/async-storage) in package.json
-- [ ] T003 [P] Configure Tailwind and NativeWind CSS styles in tailwind.config.js and global.css
+- [x] T001 Initialize Expo project configuration and root files in package.json, app.json, babel.config.js, and metro.config.js
+- [x] T002 Install core dependencies (expo, expo-router, react-native-web, react-dom, nativewind, tailwindcss, @expo/vector-icons, @react-native-community/netinfo, @react-native-async-storage/async-storage) in package.json
+- [x] T003 [P] Configure Tailwind and NativeWind CSS styles in tailwind.config.js and global.css
 
 ---
 
@@ -31,13 +31,13 @@
 
 **⚠️ CRITICAL**: Nenhuma user story deve ser iniciada antes da conclusão desta fase.
 
-- [ ] T004 [P] Configure strict TypeScript configuration in tsconfig.json
-- [ ] T005 [P] Define theme and rural design token types in types/theme.ts
-- [ ] T006 [P] Define network connectivity types in types/network.ts
-- [ ] T007 [P] Define universal async feedback state types (4 states) in types/state.ts
-- [ ] T008 [P] Define navigation and user profile types in types/navigation.ts and types/user.ts
-- [ ] T009 Implement centralized theme tokens and rural color palette constants in constants/theme.ts
-- [ ] T010 Implement universal network connectivity hook in hooks/useNetworkStatus.ts
+- [x] T004 [P] Configure strict TypeScript configuration in tsconfig.json
+- [x] T005 [P] Define theme and rural design token types in types/theme.ts
+- [x] T006 [P] Define network connectivity types in types/network.ts
+- [x] T007 [P] Define universal async feedback state types (4 states) in types/state.ts
+- [x] T008 [P] Define navigation and user profile types in types/navigation.ts and types/user.ts
+- [x] T009 Implement centralized theme tokens and rural color palette constants in constants/theme.ts
+- [x] T010 Implement universal network connectivity hook in hooks/useNetworkStatus.ts
 
 **Checkpoint**: Base foundational pronta — a implementação das user stories pode começar em paralelo.
 
@@ -51,16 +51,16 @@
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Implement root layout with SafeArea and global context providers in app/_layout.tsx
-- [ ] T012 [P] [US1] Implement universal 5-tab navigation layout in app/(tabs)/_layout.tsx
-- [ ] T013 [P] [US1] Implement Home dashboard screen in app/(tabs)/index.tsx
-- [ ] T014 [P] [US1] Implement Cultivo module overview screen in app/(tabs)/cultivo/index.tsx
-- [ ] T015 [P] [US1] Implement Derivados module overview screen in app/(tabs)/derivados/index.tsx
-- [ ] T016 [P] [US1] Implement Sustentabilidade module overview screen in app/(tabs)/sustentabilidade/index.tsx
-- [ ] T017 [P] [US1] Implement Recursos module overview screen in app/(tabs)/recursos/index.tsx
-- [ ] T018 [P] [US1] Implement authentication stack layout in app/(auth)/_layout.tsx
-- [ ] T019 [P] [US1] Implement fast startup splash screen (< 3s) in app/(auth)/splash.tsx
-- [ ] T020 [P] [US1] Implement user profile selection login screen in app/(auth)/login.tsx
+- [x] T011 [US1] Implement root layout with SafeArea and global context providers in app/_layout.tsx
+- [x] T012 [P] [US1] Implement universal 5-tab navigation layout in app/(tabs)/_layout.tsx
+- [x] T013 [P] [US1] Implement Home dashboard screen in app/(tabs)/index.tsx
+- [x] T014 [P] [US1] Implement Cultivo module overview screen in app/(tabs)/cultivo/index.tsx
+- [x] T015 [P] [US1] Implement Derivados module overview screen in app/(tabs)/derivados/index.tsx
+- [x] T016 [P] [US1] Implement Sustentabilidade module overview screen in app/(tabs)/sustentabilidade/index.tsx
+- [x] T017 [P] [US1] Implement Recursos module overview screen in app/(tabs)/recursos/index.tsx
+- [x] T018 [P] [US1] Implement authentication stack layout in app/(auth)/_layout.tsx
+- [x] T019 [P] [US1] Implement fast startup splash screen (< 3s) in app/(auth)/splash.tsx
+- [x] T020 [P] [US1] Implement user profile selection login screen in app/(auth)/login.tsx
 
 **Checkpoint**: Neste ponto, a User Story 1 (MVP) estará plenamente funcional e navegável na Web e no Android.
 
@@ -74,9 +74,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] Add npm scripts for typecheck (tsc --noEmit), web start, and android start in package.json
-- [ ] T022 [P] [US2] Create ambient module declarations for NativeWind, images, and fonts in types/declarations.d.ts
-- [ ] T023 [US2] Audit and enforce strict typing across all route components and layout providers in app/
+- [x] T021 [US2] Add npm scripts for typecheck (tsc --noEmit), web start, and android start in package.json
+- [x] T022 [P] [US2] Create ambient module declarations for NativeWind, images, and fonts in types/declarations.d.ts
+- [x] T023 [US2] Audit and enforce strict typing across all route components and layout providers in app/
 
 **Checkpoint**: As User Stories 1 e 2 estarão integradas e com tipagem estrita validada.
 
@@ -90,15 +90,15 @@
 
 ### Implementation for User Story 3
 
-- [ ] T024 [P] [US3] Implement AccessiblePressable enforcing minimum 48x48dp hitbox in components/common/AccessiblePressable.tsx
-- [ ] T025 [US3] Implement accessible Button component with rural palette variants in components/common/Button.tsx
-- [ ] T026 [P] [US3] Implement accessible Card container component in components/common/Card.tsx
-- [ ] T027 [P] [US3] Implement Skeleton loader component (< 400ms pulse) in components/feedback/Skeleton.tsx
-- [ ] T028 [P] [US3] Implement EmptyState component with friendly rural language in components/feedback/EmptyState.tsx
-- [ ] T029 [P] [US3] Implement OfflineBanner component with connectivity indicator in components/feedback/OfflineBanner.tsx
-- [ ] T030 [US3] Implement ErrorCard component with isolated retry trigger in components/feedback/ErrorCard.tsx
-- [ ] T031 [P] [US3] Implement accessible mobile TabBar with 48x48dp touch targets in components/navigation/TabBar.tsx
-- [ ] T032 [P] [US3] Implement responsive desktop web navigation bar in components/navigation/WebSidebar.tsx
+- [x] T024 [P] [US3] Implement AccessiblePressable enforcing minimum 48x48dp hitbox in components/common/AccessiblePressable.tsx
+- [x] T025 [US3] Implement accessible Button component with rural palette variants in components/common/Button.tsx
+- [x] T026 [P] [US3] Implement accessible Card container component in components/common/Card.tsx
+- [x] T027 [P] [US3] Implement Skeleton loader component (< 400ms pulse) in components/feedback/Skeleton.tsx
+- [x] T028 [P] [US3] Implement EmptyState component with friendly rural language in components/feedback/EmptyState.tsx
+- [x] T029 [P] [US3] Implement OfflineBanner component with connectivity indicator in components/feedback/OfflineBanner.tsx
+- [x] T030 [US3] Implement ErrorCard component with isolated retry trigger in components/feedback/ErrorCard.tsx
+- [x] T031 [P] [US3] Implement accessible mobile TabBar with 48x48dp touch targets in components/navigation/TabBar.tsx
+- [x] T032 [P] [US3] Implement responsive desktop web navigation bar in components/navigation/WebSidebar.tsx
 
 **Checkpoint**: Todas as 3 User Stories estarão concluídas e atendendo integralmente à Constituição do CajuTech.
 
@@ -108,9 +108,9 @@
 
 **Purpose**: Verificação ponta a ponta, alinhamento com a Constituição e documentação do desenvolvedor.
 
-- [ ] T033 [P] Execute end-to-end verification following specs/001-app-setup/quickstart.md
-- [ ] T034 Audit constitution compliance (hitboxes >= 48dp, 2-touch navigation, rural labels, zero white screens)
-- [ ] T035 [P] Update README.md with universal development workflow and command reference
+- [x] T033 [P] Execute end-to-end verification following specs/001-app-setup/quickstart.md
+- [x] T034 Audit constitution compliance (hitboxes >= 48dp, 2-touch navigation, rural labels, zero white screens)
+- [x] T035 [P] Update README.md with universal development workflow and command reference
 
 ---
 
