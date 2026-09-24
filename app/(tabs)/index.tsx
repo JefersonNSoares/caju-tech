@@ -6,17 +6,51 @@ import { THEME } from '../../constants/theme';
 import { Card } from '../../components/common/Card';
 import { AccessiblePressable } from '../../components/common/AccessiblePressable';
 import { Button } from '../../components/common/Button';
+import { useAuth } from '../../hooks/useAuth';
+
+const ROLE_LABELS: Record<string, string> = {
+  farmer: 'Agricultor / Produtor',
+  student: 'Estudante / Extensionista',
+  visitor: 'Visitante / Consumidor',
+};
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { user, logout } = useAuth();
+
+  const handleSwitchProfile = () => {
+    router.push('/(auth)/login');
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace('/(auth)/login');
+  };
+
+  const city = user?.preferredCity || 'Piripiri - PI';
+  const roleName = user ? ROLE_LABELS[user.role] || user.role : null;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      {/* Header com Saudação Personalizada */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Bem-vindo ao CajuTech</Text>
-        <Text style={styles.subtitle}>
-          Inovação, manejo sustentável e agregação de valor na cajucultura.
-        </Text>
+        <View style={styles.headerContent}>
+          <Text style={styles.greeting}>
+            {user ? `Olá, ${user.displayName}!` : 'Bem-vindo ao CajuTech'}
+          </Text>
+          <Text style={styles.subtitle}>
+            {user
+              ? `Perfil: ${roleName} • ${city}`
+              : 'Inovação, manejo sustentável e agregação de valor na cajucultura.'}
+          </Text>
+        </View>
+
+        {user && (
+          <View style={styles.profileBadge}>
+            <Feather name="user-check" size={16} color={THEME.colors.primary} />
+            <Text style={styles.profileBadgeText}>{roleName}</Text>
+          </View>
+        )}
       </View>
 
       {/* Weather & Location Summary */}
@@ -24,7 +58,7 @@ export default function HomeScreen() {
         <View style={styles.weatherHeader}>
           <View style={styles.locationTag}>
             <Feather name="map-pin" size={16} color={THEME.colors.primary} />
-            <Text style={styles.locationText}>Piripiri - PI</Text>
+            <Text style={styles.locationText}>{city}</Text>
           </View>
           <View style={styles.weatherCondition}>
             <Feather name="sun" size={20} color={THEME.colors.cajuYellow} />
@@ -89,13 +123,31 @@ export default function HomeScreen() {
         </AccessiblePressable>
       </View>
 
+      {/* Ações de Perfil e Sessão */}
       <View style={styles.footerAction}>
-        <Button
-          label="Identificar Perfil / Entrar"
-          variant="outline"
-          onPress={() => router.push('/login')}
-          icon={<Feather name="user" size={18} color={THEME.colors.primary} />}
-        />
+        {user ? (
+          <View style={styles.sessionActions}>
+            <Button
+              label="Trocar Perfil"
+              variant="outline"
+              onPress={handleSwitchProfile}
+              icon={<Feather name="refresh-cw" size={18} color={THEME.colors.primary} />}
+            />
+            <Button
+              label="Sair / Redefinir"
+              variant="outline"
+              onPress={handleLogout}
+              icon={<Feather name="log-out" size={18} color={THEME.colors.error} />}
+            />
+          </View>
+        ) : (
+          <Button
+            label="Identificar Perfil / Entrar"
+            variant="outline"
+            onPress={handleSwitchProfile}
+            icon={<Feather name="user" size={18} color={THEME.colors.primary} />}
+          />
+        )}
       </View>
     </ScrollView>
   );
@@ -114,6 +166,10 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: THEME.dimensions.spacing.md,
+    gap: 8,
+  },
+  headerContent: {
+    gap: 4,
   },
   greeting: {
     fontSize: 24,
@@ -123,8 +179,23 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 15,
     color: THEME.colors.textSecondary,
-    marginTop: 4,
     lineHeight: 22,
+  },
+  profileBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    alignSelf: 'flex-start',
+    backgroundColor: '#E8F5E9',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: THEME.dimensions.radius.full,
+    marginTop: 4,
+  },
+  profileBadgeText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: THEME.colors.primaryDark,
   },
   weatherCard: {
     backgroundColor: '#FFFFFF',
@@ -207,5 +278,10 @@ const styles = StyleSheet.create({
   footerAction: {
     marginTop: THEME.dimensions.spacing.sm,
     marginBottom: THEME.dimensions.spacing.xl,
+  },
+  sessionActions: {
+    flexDirection: 'row',
+    gap: 12,
+    flexWrap: 'wrap',
   },
 });
