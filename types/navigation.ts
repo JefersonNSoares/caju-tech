@@ -6,3 +6,7 @@ export interface TabRouteConfig {
   iconName: string;
   badgeCount?: number;
 }
+
+export interface DerivadosRouteParams {
+  id: string;
+}

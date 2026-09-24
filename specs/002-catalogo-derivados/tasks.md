@@ -19,8 +19,8 @@
 
 **Purpose**: Criação das definições de tipos e extensões de roteamento compartilhadas.
 
-- [ ] T001 [P] Create TypeScript models and interfaces for Derivados (DerivadoDetail, PassoProcessamento, RendimentoInfo, DerivadoCategoria) in types/derivados.ts
-- [ ] T002 [P] Update navigation route parameter definitions to support dynamic route [id] in types/navigation.ts
+- [x] T001 [P] Create TypeScript models and interfaces for Derivados (DerivadoDetail, PassoProcessamento, RendimentoInfo, DerivadoCategoria) in types/derivados.ts
+- [x] T002 [P] Update navigation route parameter definitions to support dynamic route [id] in types/navigation.ts
 
 ---
 
@@ -30,8 +30,8 @@
 
 **⚠️ CRITICAL**: Nenhuma user story deve ser iniciada antes da conclusão desta fase.
 
-- [ ] T003 Implement centralized local data provider service with getDerivadoById and getAllDerivados for the 4 core derivatives in services/derivadosService.ts
-- [ ] T004 Connect derivative catalog cards to dynamic route navigation via router.push in app/(tabs)/derivados/index.tsx
+- [x] T003 Implement centralized local data provider service with getDerivadoById and getAllDerivados for the 4 core derivatives in services/derivadosService.ts
+- [x] T004 Connect derivative catalog cards to dynamic route navigation via router.push in app/(tabs)/derivados/index.tsx
 
 **Checkpoint**: Base foundational pronta — a implementação das histórias de usuário pode começar.
 
@@ -45,12 +45,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Create dynamic route screen scaffold with useLocalSearchParams, ScrollView, and responsive container (maxWidth: 800) in app/(tabs)/derivados/[id].tsx
-- [ ] T006 [P] [US1] Implement header with back button (AccessiblePressable >= 48x48dp) and derivative category badge in app/(tabs)/derivados/[id].tsx
-- [ ] T007 [P] [US1] Implement overview & summary card section displaying icon, title, description, estimated time, and difficulty in app/(tabs)/derivados/[id].tsx
-- [ ] T008 [P] [US1] Implement raw material & required equipment badge list card in app/(tabs)/derivados/[id].tsx
-- [ ] T009 [US1] Implement sequential processing step-by-step list with order badges, detailed instructions, and field tips in app/(tabs)/derivados/[id].tsx
-- [ ] T010 [US1] Implement invalid route parameter fallback rendering EmptyState with action button returning to catalog in app/(tabs)/derivados/[id].tsx
+- [x] T005 [US1] Create dynamic route screen scaffold with useLocalSearchParams, ScrollView, and responsive container (maxWidth: 800) in app/(tabs)/derivados/[id].tsx
+- [x] T006 [P] [US1] Implement header with back button (AccessiblePressable >= 48x48dp) and derivative category badge in app/(tabs)/derivados/[id].tsx
+- [x] T007 [P] [US1] Implement overview & summary card section displaying icon, title, description, estimated time, and difficulty in app/(tabs)/derivados/[id].tsx
+- [x] T008 [P] [US1] Implement raw material & required equipment badge list card in app/(tabs)/derivados/[id].tsx
+- [x] T009 [US1] Implement sequential processing step-by-step list with order badges, detailed instructions, and field tips in app/(tabs)/derivados/[id].tsx
+- [x] T010 [US1] Implement invalid route parameter fallback rendering EmptyState with action button returning to catalog in app/(tabs)/derivados/[id].tsx
 
 **Checkpoint**: Neste ponto, a User Story 1 (MVP) estará plenamente funcional e navegável na Web e no Android.
 
@@ -64,8 +64,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T011 [P] [US2] Implement Yield & Waste Reduction metrics card displaying raw material ratio, final product yield, and secondary byproducts in app/(tabs)/derivados/[id].tsx
-- [ ] T012 [US2] Enhance yield metrics and peduncle conservation descriptions across all 4 derivatives in services/derivadosService.ts
+- [x] T011 [P] [US2] Implement Yield & Waste Reduction metrics card displaying raw material ratio, final product yield, and secondary byproducts in app/(tabs)/derivados/[id].tsx
+- [x] T012 [US2] Enhance yield metrics and peduncle conservation descriptions across all 4 derivatives in services/derivadosService.ts
 
 **Checkpoint**: As User Stories 1 e 2 estarão integradas, entregando a proposta central de valor contra o desperdício do caju.
 
@@ -79,8 +79,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T013 [P] [US3] Implement Best Practices and Food Hygiene section with rural quality standards in app/(tabs)/derivados/[id].tsx
-- [ ] T014 [P] [US3] Implement Operational Safety Alert card for hazardous steps (caustic LCC handling, steam boiling protection) in app/(tabs)/derivados/[id].tsx
+- [x] T013 [P] [US3] Implement Best Practices and Food Hygiene section with rural quality standards in app/(tabs)/derivados/[id].tsx
+- [x] T014 [P] [US3] Implement Operational Safety Alert card for hazardous steps (caustic LCC handling, steam boiling protection) in app/(tabs)/derivados/[id].tsx
 
 **Checkpoint**: Todas as 3 User Stories estarão completas, fornecendo uma experiência educativa rural completa.
 
@@ -90,8 +90,8 @@
 
 **Purpose**: Verificação de qualidade estrita, acessibilidade e responsividade universal.
 
-- [ ] T015 [P] Run strict TypeScript typecheck (npm run typecheck) and ensure zero compilation errors across all new and updated files
-- [ ] T016 [P] Audit rural accessibility standards (hitboxes >= 48x48dp, contrast, responsive layout on mobile and desktop web) across the derivatives module
+- [x] T015 [P] Run strict TypeScript typecheck (npm run typecheck) and ensure zero compilation errors across all new and updated files
+- [x] T016 [P] Audit rural accessibility standards (hitboxes >= 48x48dp, contrast, responsive layout on mobile and desktop web) across the derivatives module
 
 ---
 
