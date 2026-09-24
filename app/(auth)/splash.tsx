@@ -3,17 +3,44 @@ import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { THEME } from '../../constants/theme';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function SplashScreen() {
   const router = useRouter();
+  const { isLoading, isAuthenticated } = useAuth();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.replace('/(tabs)');
-    }, 1500);
+    let isMounted = true;
 
-    return () => clearTimeout(timer);
-  }, [router]);
+    // Garante um tempo visual mínimo (< 1.5s) da marca antes de transicionar
+    const timer = setTimeout(() => {
+      if (!isMounted) return;
+
+      if (!isLoading) {
+        if (isAuthenticated) {
+          router.replace('/(tabs)');
+        } else {
+          router.replace('/(auth)/login');
+        }
+      }
+    }, 1200);
+
+    // Timeout de resiliência (TEL-EST-01): Nunca travar em tela de carregamento após 3s
+    const fallbackTimer = setTimeout(() => {
+      if (!isMounted) return;
+      if (isAuthenticated) {
+        router.replace('/(tabs)');
+      } else {
+        router.replace('/(auth)/login');
+      }
+    }, 3000);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+      clearTimeout(fallbackTimer);
+    };
+  }, [isLoading, isAuthenticated, router]);
 
   return (
     <View style={styles.container}>
