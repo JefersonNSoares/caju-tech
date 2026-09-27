@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import '../global.css';
 import { useNetworkStatus } from '../hooks/useNetworkStatus';
+import { AuthProvider } from '../hooks/useAuth';
 import { OfflineBanner } from '../components/feedback/OfflineBanner';
 import { THEME } from '../constants/theme';
 
@@ -13,18 +14,20 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-        <StatusBar style="dark" backgroundColor={THEME.colors.background} />
-        {isOffline && (
-          <OfflineBanner message="Sinal ausente — navegando com dados salvos" />
-        )}
-        <View style={styles.content}>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="(auth)" />
-          </Stack>
-        </View>
-      </SafeAreaView>
+      <AuthProvider>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+          <StatusBar style="dark" backgroundColor={THEME.colors.background} />
+          {isOffline && (
+            <OfflineBanner message="Sinal ausente — navegando com dados salvos" />
+          )}
+          <View style={styles.content}>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(tabs)" />
+            </Stack>
+          </View>
+        </SafeAreaView>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }
