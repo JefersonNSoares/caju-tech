@@ -54,6 +54,8 @@ try {
 } catch { }
 
 # Initialize
+$savedEAP = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
 try {
     $out = git init -q 2>&1 | Out-String
     if ($LASTEXITCODE -ne 0) { throw "git init failed: $out" }
@@ -64,6 +66,8 @@ try {
 } catch {
     Write-Warning "[specify] Error: $_"
     exit 1
+} finally {
+    $ErrorActionPreference = $savedEAP
 }
 
-Write-Host "✓ Git repository initialized"
+Write-Host "[OK] Git repository initialized"

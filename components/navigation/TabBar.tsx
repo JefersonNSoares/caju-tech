@@ -26,6 +26,7 @@ export const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, naviga
     <View style={styles.tabBarContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
+        if ((options as any).href === null) return null;
         const isFocused = state.index === index;
         const baseName = route.name.split('/')[0];
         const label = TAB_LABELS[baseName] || options.title || route.name;

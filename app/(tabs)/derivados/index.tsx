@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { THEME } from '../../../constants/theme';
 import { Card } from '../../../components/common/Card';
@@ -37,6 +38,8 @@ const DERIVADOS_CATEGORIES = [
 ];
 
 export default function DerivadosScreen() {
+  const router = useRouter();
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.header}>

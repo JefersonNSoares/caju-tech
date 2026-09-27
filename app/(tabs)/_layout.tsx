@@ -38,6 +38,13 @@ export default function TabsLayout() {
             }}
           />
           <Tabs.Screen
+            name="derivados/[id]"
+            options={{
+              href: null,
+              title: 'Detalhes do Derivado',
+            }}
+          />
+          <Tabs.Screen
             name="sustentabilidade/index"
             options={{
               title: 'Sustentabilidade',
