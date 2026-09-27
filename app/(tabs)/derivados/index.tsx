@@ -53,7 +53,7 @@ export default function DerivadosScreen() {
         {DERIVADOS_CATEGORIES.map((item) => (
           <AccessiblePressable
             key={item.id}
-            onPress={() => router.push(`/(tabs)/derivados/${item.id}` as any)}
+            onPress={() => {}}
             style={styles.pressableItem}
             accessibilityLabel={`Derivado: ${item.title}`}
           >
