@@ -6,34 +6,47 @@ import { THEME } from '../../../constants/theme';
 import { Card } from '../../../components/common/Card';
 import { AccessiblePressable } from '../../../components/common/AccessiblePressable';
 
-const DERIVADOS_CATEGORIES = [
+interface DerivadoCategory {
+  id: string;
+  title: string;
+  tag: string;
+  description: string;
+  icon: keyof typeof Feather.glyphMap;
+  route: string;
+}
+
+const DERIVADOS_CATEGORIES: DerivadoCategory[] = [
   {
     id: 'castanha',
     title: 'Castanha e LCC',
     tag: 'Alto Valor Agregado',
     description: 'Processamento da amêndoa, autoclavagem, corte, estufagem e aproveitamento do Líquido da Casca.',
-    icon: 'disc' as const,
+    icon: 'disc',
+    route: '/derivados/castanha',
   },
   {
     id: 'cajuina',
     title: 'Cajuína Tradicional Piauiense',
     tag: 'Patrimônio Cultural',
     description: 'Clarificação por gelatina, filtração e pasteurização para obtenção da cor âmbar cristalina.',
-    icon: 'coffee' as const,
+    icon: 'coffee',
+    route: '/derivados/cajuina',
   },
   {
     id: 'doces',
     title: 'Doces, Polpas e Compotas',
     tag: 'Agricultura Familiar',
     description: 'Doce em calda, geleia, pasta de caju e produção de polpa congelada para sucos.',
-    icon: 'sun' as const,
+    icon: 'sun',
+    route: '/derivados/doces',
   },
   {
     id: 'fibra',
     title: 'Fibra de Caju (Carne Vegetal)',
     tag: 'Inovação e Zero Desperdício',
     description: 'Uso do bagaço residual prensado para hambúrgueres vegetais, almôndegas e enriquecimento nutricional.',
-    icon: 'layers' as const,
+    icon: 'layers',
+    route: '/derivados/fibra',
   },
 ];
 
@@ -53,9 +66,9 @@ export default function DerivadosScreen() {
         {DERIVADOS_CATEGORIES.map((item) => (
           <AccessiblePressable
             key={item.id}
-            onPress={() => {}}
+            onPress={() => router.push(item.route as any)}
             style={styles.pressableItem}
-            accessibilityLabel={`Derivado: ${item.title}`}
+            accessibilityLabel={`Acessar derivado: ${item.title}`}
           >
             <Card style={styles.card}>
               <View style={styles.badgeRow}>
@@ -105,12 +118,16 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   list: {
+    width: '100%',
     gap: 12,
+    alignItems: 'stretch',
   },
   pressableItem: {
     width: '100%',
+    alignSelf: 'stretch',
   },
   card: {
+    width: '100%',
     padding: THEME.dimensions.spacing.md,
   },
   badgeRow: {
@@ -141,6 +158,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
+    paddingRight: 8,
   },
   itemTitle: {
     fontSize: 16,
