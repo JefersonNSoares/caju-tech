@@ -21,9 +21,9 @@ export default function SustentabilidadeDetailScreen() {
     return (
       <View style={styles.container}>
         <EmptyState
-          icon="alert-circle"
+          iconName="alert-circle"
           title="Prática Sustentável Não Encontrada"
-          message="Desculpe, não conseguimos encontrar a prática sustentável que procura."
+          description="Desculpe, não conseguimos encontrar a prática sustentável que procura."
           actionLabel="Voltar para Sustentabilidade"
           onAction={() => router.replace('/sustentabilidade' as any)}
         />

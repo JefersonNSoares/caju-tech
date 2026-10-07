@@ -6,11 +6,12 @@ export interface CardProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   testID?: string;
+  className?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ children, style, testID }) => {
+export const Card: React.FC<CardProps> = ({ children, style, testID, className }) => {
   return (
-    <View testID={testID} style={[styles.card, style]}>
+    <View testID={testID} className={className} style={[styles.card, style]}>
       {children}
     </View>
   );

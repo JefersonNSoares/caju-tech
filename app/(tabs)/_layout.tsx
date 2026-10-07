@@ -32,6 +32,34 @@ export default function TabsLayout() {
             }}
           />
           <Tabs.Screen
+            name="cultivo/plantio"
+            options={{
+              href: null,
+              title: 'Plantio e Espaçamento',
+            }}
+          />
+          <Tabs.Screen
+            name="cultivo/irrigacao"
+            options={{
+              href: null,
+              title: 'Irrigação e Recursos Hídricos',
+            }}
+          />
+          <Tabs.Screen
+            name="cultivo/poda"
+            options={{
+              href: null,
+              title: 'Poda e Adubação',
+            }}
+          />
+          <Tabs.Screen
+            name="cultivo/pragas"
+            options={{
+              href: null,
+              title: 'Controle de Pragas e Doenças',
+            }}
+          />
+          <Tabs.Screen
             name="derivados/index"
             options={{
               title: 'Derivados',
