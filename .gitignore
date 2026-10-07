@@ -36,3 +36,6 @@ Thumbs.db
 
 expo-env.d.ts
 # @end expo-cli
+
+# Antigravity IDE / Gemini
+.gemini/
