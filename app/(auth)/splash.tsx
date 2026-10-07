@@ -1,105 +1,102 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Feather } from '@expo/vector-icons';
 import { THEME } from '../../constants/theme';
-import { useAuth } from '../../hooks/useAuth';
+import { CajuTechLogo } from '../../components/common/CajuTechLogo';
+import { Button } from '../../components/common/Button';
 
 export default function SplashScreen() {
   const router = useRouter();
-  const { isLoading, isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    let isMounted = true;
-
-    // Garante um tempo visual mínimo (< 1.5s) da marca antes de transicionar
-    const timer = setTimeout(() => {
-      if (!isMounted) return;
-
-      if (!isLoading) {
-        if (isAuthenticated) {
-          router.replace('/(tabs)');
-        } else {
-          router.replace('/(auth)/login');
-        }
-      }
-    }, 1200);
-
-    // Timeout de resiliência (TEL-EST-01): Nunca travar em tela de carregamento após 3s
-    const fallbackTimer = setTimeout(() => {
-      if (!isMounted) return;
-      if (isAuthenticated) {
-        router.replace('/(tabs)');
-      } else {
-        router.replace('/(auth)/login');
-      }
-    }, 3000);
-
-    return () => {
-      isMounted = false;
-      clearTimeout(timer);
-      clearTimeout(fallbackTimer);
-    };
-  }, [isLoading, isAuthenticated, router]);
+  const handleStart = () => {
+    router.push('/(auth)/login');
+  };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <View style={styles.iconCircle}>
-          <Feather name="feather" size={48} color="#FFFFFF" />
-        </View>
-        <Text style={styles.title}>CajuTech</Text>
-        <Text style={styles.tagline}>Cajucultura e Gestão no Semiárido</Text>
-      </View>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.contentCard}>
+          {/* 1. Logótipo oficial do CajuTech no centro */}
+          <View style={styles.logoWrapper}>
+            <CajuTechLogo size="xl" showPlaceholderLabel={true} showTagline={true} />
+          </View>
 
-      <View style={styles.footer}>
-        <ActivityIndicator size="small" color="#FFFFFF" />
-        <Text style={styles.loadingText}>Carregando ambiente...</Text>
-      </View>
-    </View>
+          {/* 2. Texto explicativo abaixo do logo */}
+          <Text style={styles.explanationText}>
+            Aplicativo educativo sobre o cultivo do caju e o aproveitamento de seus derivados
+          </Text>
+
+          {/* 3. Botão verde de ação "INICIAR" */}
+          <View style={styles.actionWrapper}>
+            <Button
+              label="INICIAR"
+              onPress={handleStart}
+              variant="primary"
+              size="lg"
+              fullWidth
+              testID="btn-iniciar"
+            />
+          </View>
+        </View>
+
+        {/* Rodapé com identidade de fomento e pesquisa */}
+        <View style={styles.footerNote}>
+          <Text style={styles.footerText}>Tecnologia & Extensão Rural para o Semiárido</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: THEME.colors.primary,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 64,
+    backgroundColor: THEME.colors.background,
   },
-  logoContainer: {
-    alignItems: 'center',
-    marginTop: 120,
-  },
-  iconCircle: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+  container: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    padding: THEME.dimensions.spacing.lg,
   },
-  title: {
-    fontSize: 36,
-    fontWeight: '900',
-    color: '#FFFFFF',
-    letterSpacing: 1,
-  },
-  tagline: {
-    fontSize: 16,
-    color: '#E8F5E9',
-    marginTop: 8,
-    textAlign: 'center',
-  },
-  footer: {
+  contentCard: {
+    width: '100%',
+    maxWidth: 440,
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    paddingVertical: THEME.dimensions.spacing.xl,
+    paddingHorizontal: THEME.dimensions.spacing.md,
   },
-  loadingText: {
-    color: '#E8F5E9',
-    fontSize: 13,
+  logoWrapper: {
+    marginBottom: THEME.dimensions.spacing.xl,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  explanationText: {
+    fontSize: 16,
+    color: THEME.colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 24,
+    marginBottom: THEME.dimensions.spacing.xxl,
+    paddingHorizontal: THEME.dimensions.spacing.sm,
     fontWeight: '500',
+  },
+  actionWrapper: {
+    width: '100%',
+    paddingHorizontal: THEME.dimensions.spacing.sm,
+  },
+  footerNote: {
+    marginTop: THEME.dimensions.spacing.lg,
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 12,
+    color: THEME.colors.textMuted,
+    fontWeight: '600',
+    letterSpacing: 0.3,
   },
 });

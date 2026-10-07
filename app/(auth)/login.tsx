@@ -9,6 +9,8 @@ import { AccessiblePressable } from '../../components/common/AccessiblePressable
 import { Button } from '../../components/common/Button';
 import { useAuth } from '../../hooks/useAuth';
 
+import { CajuTechLogo } from '../../components/common/CajuTechLogo';
+
 interface ProfileOption {
   role: UserRole;
   title: string;
@@ -70,7 +72,11 @@ export default function LoginScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      {/* Cabeçalho atualizado: Logótipo oficial do CajuTech no topo */}
       <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <CajuTechLogo size="md" showPlaceholderLabel={true} showTagline={false} />
+        </View>
         <Text style={styles.title}>Como você quer utilizar o CajuTech?</Text>
         <Text style={styles.subtitle}>
           Selecione seu perfil para ajustarmos as recomendações e conteúdos.
@@ -169,6 +175,10 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: THEME.dimensions.spacing.xl,
+    alignItems: 'center',
+  },
+  logoContainer: {
+    marginBottom: THEME.dimensions.spacing.lg,
     alignItems: 'center',
   },
   title: {

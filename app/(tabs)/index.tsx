@@ -128,7 +128,7 @@ export default function HomeScreen() {
         {user ? (
           <View style={styles.sessionActions}>
             <Button
-              label="Trocar Perfil"
+              label="Alterar Perfil"
               variant="outline"
               onPress={handleSwitchProfile}
               icon={<Feather name="refresh-cw" size={18} color={THEME.colors.primary} />}
@@ -142,7 +142,7 @@ export default function HomeScreen() {
           </View>
         ) : (
           <Button
-            label="Identificar Perfil / Entrar"
+            label="Alterar Perfil"
             variant="outline"
             onPress={handleSwitchProfile}
             icon={<Feather name="user" size={18} color={THEME.colors.primary} />}
