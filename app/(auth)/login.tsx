@@ -75,7 +75,7 @@ export default function LoginScreen() {
       {/* Cabeçalho atualizado: Logótipo oficial do CajuTech no topo */}
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          <CajuTechLogo size="md" showPlaceholderLabel={true} showTagline={false} />
+          <CajuTechLogo size="md" />
         </View>
         <Text style={styles.title}>Como você quer utilizar o CajuTech?</Text>
         <Text style={styles.subtitle}>

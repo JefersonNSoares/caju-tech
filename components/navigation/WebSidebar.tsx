@@ -5,6 +5,8 @@ import { useRouter, usePathname } from 'expo-router';
 import { THEME } from '../../constants/theme';
 import { AccessiblePressable } from '../common/AccessiblePressable';
 
+import { CajuTechLogo } from '../common/CajuTechLogo';
+
 interface NavItem {
   name: string;
   route: string;
@@ -27,9 +29,7 @@ export const WebSidebar: React.FC = () => {
   return (
     <View style={styles.sidebar}>
       <View style={styles.brandContainer}>
-        <View style={styles.logoBadge}>
-          <Text style={styles.logoText}>CT</Text>
-        </View>
+        <CajuTechLogo size="sm" />
         <Text style={styles.brandTitle}>CajuTech</Text>
       </View>
 
@@ -82,20 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: THEME.dimensions.spacing.xl,
     paddingHorizontal: THEME.dimensions.spacing.xs,
-  },
-  logoBadge: {
-    width: 38,
-    height: 38,
-    borderRadius: 8,
-    backgroundColor: THEME.colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-  },
-  logoText: {
-    color: '#FFFFFF',
-    fontWeight: '800',
-    fontSize: 16,
+    gap: 12,
   },
   brandTitle: {
     fontSize: 20,

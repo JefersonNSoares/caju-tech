@@ -20,21 +20,23 @@ const CULTIVO_STAGES_DATA: Record<CultivoStageId, CultivoStage> = {
     videos: [
       {
         id: 'plantio-v1',
-        title: 'Coveamento, Calagem e Adubação de Fundação',
+        videoId: 'KDq0zny5vFU',
+        title: 'Qual o melhor espaçamento?',
         duration: '04:15 min',
-        badge: 'Técnica Prática',
+        badge: 'Decisão Estratégica',
         coverTheme: 'earth',
         summary:
-          'Demonstração passo a passo da abertura de covas nas dimensões ideais de 40x40x40 cm, separação da camada superficial de solo rico em matéria orgânica, incorporação uniforme de calcário dolomítico e adubação orgânica fosfatada. Apresenta o tempo necessário de repouso antes do plantio da muda.',
+          'O vídeo explica que a definição do espaçamento é uma decisão estratégica e permanente na cajucultura, pois determina a densidade de plantas por hectare e o manejo técnico a longo prazo.',
       },
       {
         id: 'plantio-v2',
-        title: 'Plantio da Muda Enxertada e Alinhamento no Campo',
+        videoId: 'AIbbAiD0iUQ',
+        title: 'Plantio do Cajueiros',
         duration: '05:40 min',
-        badge: 'Passo a Passo',
+        badge: 'Guia Técnico',
         coverTheme: 'green',
         summary:
-          'Guia visual de retirada do saco plástico da muda sem desmanchar o torrão, posicionamento do colo da planta, alinhamento com piquetes de espaçamento 7m x 7m e primeiro molhamento abundante para eliminação de bolsas de ar ao redor das raízes.',
+          'Este vídeo apresenta dicas fundamentais para o plantio e o pós-plantio do cajueiro, com foco em garantir um pomar produtivo e rentável. O engenheiro agrônomo Vitor Oliveira detalha as etapas essenciais para o sucesso da cultura.',
       },
     ],
   },
@@ -55,24 +57,23 @@ const CULTIVO_STAGES_DATA: Record<CultivoStageId, CultivoStage> = {
       'Monitoramento: Avaliar a umidade do solo com trado ou tensiômetros na profundidade de 20 a 40 cm.',
       'Manejo de turno: Irrigar preferencialmente nas primeiras horas da manhã ou ao entardecer para reduzir perdas por evapotranspiração sob altas temperaturas.',
     ],
-    videos: [
+    videos: [],
+    infographics: [
       {
-        id: 'irrigacao-v1',
-        title: 'Instalação de Sistema de Gotejamento no Pomar',
-        duration: '06:10 min',
-        badge: 'Infraestrutura',
-        coverTheme: 'green',
-        summary:
-          'Apresenta o esquema de distribuição hidráulica com cabeçal de filtragem simples, tubulações de polietileno de baixa densidade e posicionamento correto dos emissores junto à projeção da copa das árvores em desenvolvimento.',
+        id: 'irrigacao-info-1',
+        title: 'Infográfico: Manejo Hídrico e Irrigação do Cajueiro',
+        subtitle: 'Parâmetros de lâmina d’água e turno de rega para o semiárido',
+        image: require('../assets/irrigacao1.jpg'),
+        description:
+          'Guia visual técnico com recomendações agronômicas detalhadas sobre a demanda hídrica do cajueiro-anão precoce nas diferentes fases fenológicas.',
       },
       {
-        id: 'irrigacao-v2',
-        title: 'Manejo da Lâmina d’Água nas Estações Secas',
-        duration: '04:55 min',
-        badge: 'Gestão da Água',
-        coverTheme: 'orange',
-        summary:
-          'Explica como calcular a necessidade diária de reposição hídrica com base na evapotranspiração de Piripiri-PI e região, evitando tanto o desperdício quanto o estresse excessivo que provoca abortamento de flores no cajueiro.',
+        id: 'irrigacao-info-2',
+        title: 'Infográfico: Dimensionamento e Eficiência no Uso da Água',
+        subtitle: 'Sistemas de gotejamento e microaspersão sustentáveis',
+        image: require('../assets/irrigacao2.jpg'),
+        description:
+          'Esquema prático demonstrando o posicionamento dos emissores na projeção da copa e diretrizes de conservação de água em condições de seca.',
       },
     ],
   },
@@ -96,21 +97,13 @@ const CULTIVO_STAGES_DATA: Record<CultivoStageId, CultivoStage> = {
     videos: [
       {
         id: 'poda-v1',
-        title: 'Técnica Correta de Poda de Formação e Limpeza',
+        videoId: 'SRnrqoLS-jI',
+        title: 'Como Podar o Cajueiro Anão',
         duration: '05:20 min',
-        badge: 'Manejo Prático',
+        badge: 'Guia Prático',
         coverTheme: 'earth',
         summary:
-          'Demonstração em campo de como selecionar os ramos primários, ângulo de corte bisel para evitar acúmulo de umidade, desbrota rente ao tronco e aplicação da calda cicatrizante protetora nos ferimentos vegetais.',
-      },
-      {
-        id: 'poda-v2',
-        title: 'Adubação de Produção: Épocas, Doses e Aplicação',
-        duration: '04:45 min',
-        badge: 'Nutrição Vegetal',
-        coverTheme: 'yellow',
-        summary:
-          'Orientação detalhada sobre a faixa de aplicação de fertilizantes sob a projeção da copa, incorporação superficial e sinergia entre matéria orgânica local (cama de frango/esterco) e adubação mineral equilibrada NPK.',
+          'Este vídeo é um guia prático sobre a poda do cajueiro anão, essencial para aumentar a produtividade e a longevidade do pomar. O processo foca em acelerar a renovação natural da planta, garantindo melhor entrada de luz e saúde fitossanitária.',
       },
     ],
   },
@@ -134,21 +127,23 @@ const CULTIVO_STAGES_DATA: Record<CultivoStageId, CultivoStage> = {
     videos: [
       {
         id: 'pragas-v1',
-        title: 'Identificação e Combate à Broca-das-Pontas',
+        videoId: 'blRMuwkTGWA',
+        title: 'Antracnose no cajueiro',
         duration: '05:05 min',
-        badge: 'Diagnóstico em Campo',
+        badge: 'Sanidade e Doenças',
         coverTheme: 'orange',
         summary:
-          'Instrução prática para reconhecer os sintomas iniciais da broca nos brotos jovens, presença de exsudação e serragem, e procedimentos fitossanitários mecânicos e culturais imediatos para contenção do foco.',
+          'Este vídeo aborda a antracnose, uma doença fúngica que afeta severamente a produção de cajueiros, especialmente na agricultura familiar em condições de alta umidade e temperatura .',
       },
       {
         id: 'pragas-v2',
-        title: 'Controle Agroecológico de Antracnose com Calda Bordalesa',
+        videoId: 'yvG0ypRVY9w',
+        title: 'Pragas do cajueiro: quando iniciar o controle químico?',
         duration: '06:30 min',
-        badge: 'Tratamento Preventivo',
+        badge: 'Manejo Integrado',
         coverTheme: 'green',
         summary:
-          'Passo a passo do preparo da tradicional calda bordalesa (sulfato de cobre + cal virgem), teste de neutralidade com lâmina de ferro e técnicas de aplicação uniforme nos períodos que antecedem a florada.',
+          'Neste vídeo, o agrônomo Vitor Oliveira explica os critérios que os cajucultores devem observar antes de iniciar o controle químico das pragas do cajueiro. O foco principal é evitar aplicações desnecessárias de defensivos, prezando pela sustentabilidade da lavoura.',
       },
     ],
   },

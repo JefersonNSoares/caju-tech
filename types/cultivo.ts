@@ -1,14 +1,24 @@
 import { Feather } from '@expo/vector-icons';
+import { ImageSourcePropType } from 'react-native';
 
 export type CultivoStageId = 'plantio' | 'irrigacao' | 'poda' | 'pragas';
 
 export interface CultivoVideo {
   id: string;
+  videoId: string;
   title: string;
   duration: string;
   summary: string;
   badge: string;
   coverTheme?: 'green' | 'earth' | 'orange' | 'yellow';
+}
+
+export interface CultivoInfographic {
+  id: string;
+  title: string;
+  subtitle?: string;
+  image: ImageSourcePropType;
+  description?: string;
 }
 
 export interface CultivoStage {
@@ -21,4 +31,5 @@ export interface CultivoStage {
   intro: string;
   orientacoes: string[];
   videos: CultivoVideo[];
+  infographics?: CultivoInfographic[];
 }

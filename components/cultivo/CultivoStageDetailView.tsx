@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { CultivoStageId, CultivoVideo } from '../../types/cultivo';
@@ -8,8 +8,8 @@ import { THEME } from '../../constants/theme';
 import { AccessiblePressable } from '../common/AccessiblePressable';
 import { Card } from '../common/Card';
 import { EmptyState } from '../feedback/EmptyState';
-import { VideoCardPlaceholder } from '../media/VideoCardPlaceholder';
-import { VideoPlayerModal } from '../media/VideoPlayerModal';
+import { VideoCard } from '../common/VideoCard';
+import { VideoModal } from '../common/VideoModal';
 
 export interface CultivoStageDetailViewProps {
   stageId: CultivoStageId;
@@ -104,37 +104,96 @@ export const CultivoStageDetailView: React.FC<CultivoStageDetailViewProps> = ({
           </View>
         </Card>
 
-        {/* 3. Área de Vídeos Educativos (Projetada para 2 vídeos) */}
-        <View style={styles.videosSectionHeader} className="mt-6 mb-3">
-          <View style={styles.videosTitleRow}>
-            <Feather name="play-circle" size={20} color={THEME.colors.primary} />
-            <Text style={styles.videosSectionTitle}>Vídeos Demonstrativos</Text>
-          </View>
-          <View style={styles.videosCountBadge}>
-            <Text style={styles.videosCountText}>2 vídeos</Text>
-          </View>
-        </View>
+        {/* 3. Área de Vídeos Educativos (exibida apenas quando há vídeos cadastrados) */}
+        {stage.videos.length > 0 && (
+          <>
+            <View style={styles.videosSectionHeader} className="mt-6 mb-3">
+              <View style={styles.videosTitleRow}>
+                <Feather name="play-circle" size={20} color={THEME.colors.primary} />
+                <Text style={styles.videosSectionTitle}>Vídeos Demonstrativos</Text>
+              </View>
+              <View style={styles.videosCountBadge}>
+                <Text style={styles.videosCountText}>
+                  {stage.videos.length} {stage.videos.length === 1 ? 'vídeo' : 'vídeos'}
+                </Text>
+              </View>
+            </View>
 
-        <Text style={styles.videosSectionSubtitle}>
-          Assista às instruções práticas em campo para visualizar o procedimento correto.
-        </Text>
+            <Text style={styles.videosSectionSubtitle}>
+              Assista às instruções práticas em campo para visualizar o procedimento correto.
+            </Text>
 
-        {/* Container abrigando os 2 vídeos com o componente de placeholder */}
-        <View style={styles.videosContainer} className="flex flex-col gap-4 mt-2">
-          {stage.videos.map((video) => (
-            <VideoCardPlaceholder
-              key={video.id}
-              video={video}
-              onPress={() => setSelectedVideo(video)}
-            />
-          ))}
-        </View>
+            {/* Container abrigando os cards com thumbnail oficial do YouTube */}
+            <View style={styles.videosContainer} className="flex flex-col gap-4 mt-2">
+              {stage.videos.map((video) => (
+                <VideoCard
+                  key={video.id}
+                  videoId={video.videoId}
+                  title={video.title}
+                  duration={video.duration}
+                  summary={video.summary}
+                  onPress={() => setSelectedVideo(video)}
+                />
+              ))}
+            </View>
+          </>
+        )}
+
+        {/* 4. Área de Infográficos Técnicos (exibida quando há infográficos) */}
+        {stage.infographics && stage.infographics.length > 0 && (
+          <View style={styles.infographicsSection} className="mt-6">
+            <View style={styles.videosSectionHeader} className="mb-3">
+              <View style={styles.videosTitleRow}>
+                <Feather name="image" size={20} color={THEME.colors.primary} />
+                <Text style={styles.videosSectionTitle}>Infográficos e Guias Técnicos</Text>
+              </View>
+              <View style={styles.videosCountBadge}>
+                <Text style={styles.videosCountText}>
+                  {stage.infographics.length} {stage.infographics.length === 1 ? 'infográfico' : 'infográficos'}
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.videosSectionSubtitle}>
+              Consulte os diagramas visuais e parâmetros técnicos desenvolvidos para a cajucultura do semiárido.
+            </Text>
+
+            <View style={styles.infographicsContainer}>
+              {stage.infographics.map((info) => (
+                <Card key={info.id} style={styles.infographicCard}>
+                  <View style={styles.infographicHeader}>
+                    <Text style={styles.infographicTitle}>{info.title}</Text>
+                    {Boolean(info.subtitle) && (
+                      <Text style={styles.infographicSubtitle}>{info.subtitle}</Text>
+                    )}
+                  </View>
+
+                  <View style={styles.infographicImageWrapper}>
+                    <Image
+                      source={info.image}
+                      style={styles.infographicImage}
+                      resizeMode="contain"
+                      accessibilityLabel={info.title}
+                    />
+                  </View>
+
+                  {Boolean(info.description) && (
+                    <Text style={styles.infographicDescription}>{info.description}</Text>
+                  )}
+                </Card>
+              ))}
+            </View>
+          </View>
+        )}
       </View>
 
-      {/* Modal do Player com Vídeo Ampliado e Resumo Técnico Completo */}
-      <VideoPlayerModal
+      {/* Modal do Player com Vídeo do YouTube e Resumo Agronômico Completo */}
+      <VideoModal
         visible={Boolean(selectedVideo)}
-        video={selectedVideo}
+        videoId={selectedVideo?.videoId}
+        title={selectedVideo?.title || ''}
+        summary={selectedVideo?.summary || ''}
+        duration={selectedVideo?.duration}
         onClose={() => setSelectedVideo(null)}
       />
     </ScrollView>
@@ -302,5 +361,57 @@ const styles = StyleSheet.create({
   },
   videosContainer: {
     gap: 14,
+  },
+  infographicsSection: {
+    gap: 8,
+  },
+  infographicsContainer: {
+    gap: 18,
+    marginTop: 4,
+  },
+  infographicCard: {
+    padding: THEME.dimensions.spacing.md,
+    backgroundColor: THEME.colors.surfaceCard,
+    borderRadius: THEME.dimensions.radius.lg,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.08)',
+    overflow: 'hidden',
+  },
+  infographicHeader: {
+    marginBottom: 10,
+  },
+  infographicTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: THEME.colors.textPrimary,
+    lineHeight: 22,
+  },
+  infographicSubtitle: {
+    fontSize: 13,
+    color: THEME.colors.textSecondary,
+    marginTop: 2,
+    lineHeight: 18,
+  },
+  infographicImageWrapper: {
+    width: '100%',
+    aspectRatio: 3 / 4,
+    backgroundColor: '#F9FBF7',
+    borderRadius: THEME.dimensions.radius.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.06)',
+    marginVertical: 4,
+  },
+  infographicImage: {
+    width: '100%',
+    height: '100%',
+  },
+  infographicDescription: {
+    fontSize: 13,
+    color: THEME.colors.textSecondary,
+    lineHeight: 20,
+    marginTop: 10,
   },
 });

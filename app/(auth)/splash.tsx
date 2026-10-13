@@ -22,7 +22,7 @@ export default function SplashScreen() {
         <View style={styles.contentCard}>
           {/* 1. Logótipo oficial do CajuTech no centro */}
           <View style={styles.logoWrapper}>
-            <CajuTechLogo size="xl" showPlaceholderLabel={true} showTagline={true} />
+            <CajuTechLogo size="xl" />
           </View>
 
           {/* 2. Texto explicativo abaixo do logo */}
