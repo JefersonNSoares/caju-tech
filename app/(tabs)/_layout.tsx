@@ -79,9 +79,51 @@ export default function TabsLayout() {
             }}
           />
           <Tabs.Screen
+            name="sustentabilidade/[id]"
+            options={{
+              href: null,
+              title: 'Detalhes da Prática',
+            }}
+          />
+          <Tabs.Screen
             name="recursos/index"
             options={{
               title: 'Recursos',
+            }}
+          />
+          <Tabs.Screen
+            name="recursos/quiz/index"
+            options={{
+              href: null,
+              title: 'Quiz do Produtor',
+            }}
+          />
+          <Tabs.Screen
+            name="recursos/quiz/round"
+            options={{
+              href: null,
+              title: 'Rodada do Quiz',
+            }}
+          />
+          <Tabs.Screen
+            name="recursos/quiz/result"
+            options={{
+              href: null,
+              title: 'Resultado do Quiz',
+            }}
+          />
+          <Tabs.Screen
+            name="recursos/cartilha"
+            options={{
+              href: null,
+              title: 'Cartilha Técnica Digital',
+            }}
+          />
+          <Tabs.Screen
+            name="recursos/midias"
+            options={{
+              href: null,
+              title: 'Vídeos e Infográficos',
             }}
           />
         </Tabs>

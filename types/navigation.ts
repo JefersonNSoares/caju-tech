@@ -10,3 +10,17 @@ export interface TabRouteConfig {
 export interface DerivadosRouteParams {
   id: string;
 }
+
+export interface QuizRoundRouteParams {
+  category?: string;
+  count?: string;
+}
+
+export interface QuizResultRouteParams {
+  score?: string;
+  total?: string;
+  percentage?: string;
+  category?: string;
+  badgeTitle?: string;
+  badgeIcon?: string;
+}
