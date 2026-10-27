@@ -1,4 +1,4 @@
-import { PraticaSustentavel } from '../types/sustentabilidade';
+import { PraticaSustentavel, TipoResiduo, ParametrosResiduo, ResultadoSimulacao } from '../types/sustentabilidade';
 import { Feather } from '@expo/vector-icons';
 
 type IconName = keyof typeof Feather.glyphMap;
@@ -89,11 +89,63 @@ const PRATICAS_DB: Record<string, PraticaSustentavel> = {
   }
 };
 
+const PARAMETROS_RESIDUOS: Record<TipoResiduo, ParametrosResiduo> = {
+  casca: {
+    id: 'casca',
+    nome: 'Casca (LCC)',
+    subtitulo: 'Extração do Líquido da Casca da Castanha',
+    unidadeEntrada: 'kg de castanha',
+    unidadeResiduo: 'L de LCC',
+    taxaRendimento: 0.2, // 20% do peso em litros de LCC
+    precoUnitario: 4.5, // R$ 4,50 por litro de LCC bruto
+    descricaoGanho: 'com a venda do LCC extraído.',
+    descricaoResiduo: 'Volume estimado de Líquido da Casca da Castanha (LCC), matéria-prima de alto valor industrial.',
+    tutorialRoute: '/sustentabilidade/bioprodutos',
+    tutorialNome: 'Como aproveitar este resíduo',
+  },
+  bagaco: {
+    id: 'bagaco',
+    nome: 'Bagaço do Caju',
+    subtitulo: 'Aproveitamento da polpa/fibra residual',
+    unidadeEntrada: 'kg de pedúnculo',
+    unidadeResiduo: 'kg de bagaço',
+    taxaRendimento: 0.25, // 25% do pedúnculo em bagaço prensado/seco
+    precoUnitario: 0.8, // R$ 0,80 por kg de bagaço para ração animal ou compostagem premium
+    descricaoGanho: 'com o aproveitamento do bagaço (composto ou ração animal).',
+    descricaoResiduo: 'Massa fibrosa residual ideal para enriquecimento do solo ou suplementação alimentar de rebanhos.',
+    tutorialRoute: '/sustentabilidade/residuos',
+    tutorialNome: 'Como aproveitar este resíduo',
+  },
+};
+
 export const sustentabilidadeService = {
   getPraticaById(id: string): PraticaSustentavel | null {
     return PRATICAS_DB[id] || null;
   },
   getAllPraticas(): PraticaSustentavel[] {
     return Object.values(PRATICAS_DB);
-  }
+  },
+  getParametrosResiduo(tipo: TipoResiduo): ParametrosResiduo {
+    return PARAMETROS_RESIDUOS[tipo];
+  },
+  calcularSimulacaoResiduo(tipo: TipoResiduo, quantidadeKg: number): ResultadoSimulacao {
+    const params = PARAMETROS_RESIDUOS[tipo];
+    // Validação estrita: apenas positivos, máximo 100 toneladas (100.000 kg)
+    const sanitizedKg = Math.min(Math.max(0, isNaN(quantidadeKg) ? 0 : Math.floor(quantidadeKg)), 100000);
+    
+    const quantidadeResiduo = Math.round(sanitizedKg * params.taxaRendimento * 10) / 10;
+    const valorEstimado = Math.round(quantidadeResiduo * params.precoUnitario * 100) / 100;
+
+    return {
+      tipo,
+      quantidadeEntradaKg: sanitizedKg,
+      quantidadeResiduo,
+      unidadeResiduo: params.unidadeResiduo,
+      valorEstimado,
+      descricaoGanho: params.descricaoGanho,
+      rendimentoPercentual: Math.round(params.taxaRendimento * 100),
+      cotacaoReferencia: `R$ ${params.precoUnitario.toFixed(2).replace('.', ',')} / ${params.unidadeResiduo.split(' ')[0]}`,
+    };
+  },
 };
+

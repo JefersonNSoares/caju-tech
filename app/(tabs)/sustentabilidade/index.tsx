@@ -62,6 +62,32 @@ export default function SustentabilidadeScreen() {
         </Text>
       </View>
 
+      {/* Destaque: Simulador de Renda Sustentável (TEL-SUST-04) */}
+      <AccessiblePressable
+        onPress={() => router.push('/sustentabilidade/simulador' as any)}
+        style={styles.simulatorBannerPressable}
+        accessibilityLabel="Abrir Simulador de Renda Sustentável"
+      >
+        <Card style={styles.simulatorBannerCard}>
+          <View style={styles.simulatorBannerBadge}>
+            <Feather name="trending-up" size={14} color="#0E3A13" />
+            <Text style={styles.simulatorBannerBadgeText}>SIMULADOR DE RENDA</Text>
+          </View>
+          <View style={styles.simulatorBannerMain}>
+            <View style={styles.simulatorBannerIcon}>
+              <Feather name="dollar-sign" size={24} color="#1B5E20" />
+            </View>
+            <View style={styles.simulatorBannerTextCol}>
+              <Text style={styles.simulatorBannerTitle}>Calcule o valor dos seus resíduos</Text>
+              <Text style={styles.simulatorBannerSub}>
+                Simule quanto você pode lucrar ao aproveitar casca (LCC) e bagaço do caju da sua safra.
+              </Text>
+            </View>
+            <Feather name="arrow-right" size={22} color={THEME.colors.primary} />
+          </View>
+        </Card>
+      </AccessiblePressable>
+
       <View style={styles.list}>
         {SUSTENTABILIDADE_CATEGORIES.map((item) => (
           <AccessiblePressable
@@ -167,6 +193,62 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   itemDescription: {
+    fontSize: 13,
+    color: THEME.colors.textSecondary,
+    lineHeight: 18,
+  },
+  simulatorBannerPressable: {
+    width: '100%',
+    marginBottom: THEME.dimensions.spacing.md,
+  },
+  simulatorBannerCard: {
+    width: '100%',
+    backgroundColor: '#F3F9EE',
+    borderWidth: 2,
+    borderColor: '#A4C69D',
+    padding: THEME.dimensions.spacing.md,
+  },
+  simulatorBannerBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#D7EBD0',
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+  simulatorBannerBadgeText: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#0E3A13',
+    letterSpacing: 0.5,
+  },
+  simulatorBannerMain: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  simulatorBannerIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#D7EBD0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  simulatorBannerTextCol: {
+    flex: 1,
+    paddingRight: 8,
+  },
+  simulatorBannerTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: THEME.colors.primaryDark,
+    marginBottom: 2,
+  },
+  simulatorBannerSub: {
     fontSize: 13,
     color: THEME.colors.textSecondary,
     lineHeight: 18,

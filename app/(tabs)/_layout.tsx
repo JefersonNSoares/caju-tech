@@ -86,6 +86,13 @@ export default function TabsLayout() {
             }}
           />
           <Tabs.Screen
+            name="sustentabilidade/simulador"
+            options={{
+              href: null,
+              title: 'Simulador de Renda',
+            }}
+          />
+          <Tabs.Screen
             name="recursos/index"
             options={{
               title: 'Recursos',

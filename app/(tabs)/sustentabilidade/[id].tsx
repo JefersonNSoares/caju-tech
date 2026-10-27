@@ -79,6 +79,28 @@ export default function SustentabilidadeDetailScreen() {
         </Card>
       ))}
       
+      {/* Acesso ao Simulador de Renda Sustentável (TEL-SUST-04) */}
+      <Card style={styles.simulatorBannerCard}>
+        <View style={styles.simulatorBannerHeader}>
+          <View style={styles.simulatorBannerIcon}>
+            <Feather name="trending-up" size={24} color={THEME.colors.primaryDark} />
+          </View>
+          <View style={styles.simulatorBannerTextCol}>
+            <Text style={styles.simulatorBannerTitle}>Simulador de Renda</Text>
+            <Text style={styles.simulatorBannerSub}>
+              Simule o lucro estimado aproveitando a casca (LCC) e o bagaço do caju da sua safra.
+            </Text>
+          </View>
+        </View>
+        <Button
+          label="Calcular Ganhos no Simulador"
+          onPress={() => router.push('/sustentabilidade/simulador' as any)}
+          variant="primary"
+          size="md"
+          icon={<Feather name="arrow-right" size={18} color="#FFFFFF" />}
+        />
+      </Card>
+
       <View style={styles.footerSpace} />
     </ScrollView>
   );
@@ -198,5 +220,41 @@ const styles = StyleSheet.create({
   },
   footerSpace: {
     height: 40,
+  },
+  simulatorBannerCard: {
+    marginTop: THEME.dimensions.spacing.sm,
+    marginBottom: THEME.dimensions.spacing.md,
+    backgroundColor: '#F3F9EE',
+    borderWidth: 1.5,
+    borderColor: '#A4C69D',
+    padding: THEME.dimensions.spacing.md,
+  },
+  simulatorBannerHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: THEME.dimensions.spacing.md,
+  },
+  simulatorBannerIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#E8F5E9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  simulatorBannerTextCol: {
+    flex: 1,
+  },
+  simulatorBannerTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: THEME.colors.primaryDark,
+    marginBottom: 2,
+  },
+  simulatorBannerSub: {
+    fontSize: 13,
+    color: THEME.colors.textSecondary,
+    lineHeight: 18,
   },
 });

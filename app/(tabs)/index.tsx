@@ -7,6 +7,8 @@ import { Card } from '../../components/common/Card';
 import { AccessiblePressable } from '../../components/common/AccessiblePressable';
 import { Button } from '../../components/common/Button';
 import { useAuth } from '../../hooks/useAuth';
+import { useWeather } from '../../hooks/useWeather';
+import { WeatherCard } from '../../components/common/WeatherCard';
 
 const ROLE_LABELS: Record<string, string> = {
   farmer: 'Agricultor / Produtor',
@@ -29,6 +31,7 @@ export default function HomeScreen() {
 
   const city = user?.preferredCity || 'Piripiri - PI';
   const roleName = user ? ROLE_LABELS[user.role] || user.role : null;
+  const { weather, loading, isRefreshing, refresh } = useWeather(city);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -53,22 +56,13 @@ export default function HomeScreen() {
         )}
       </View>
 
-      {/* Weather & Location Summary */}
-      <Card style={styles.weatherCard}>
-        <View style={styles.weatherHeader}>
-          <View style={styles.locationTag}>
-            <Feather name="map-pin" size={16} color={THEME.colors.primary} />
-            <Text style={styles.locationText}>{city}</Text>
-          </View>
-          <View style={styles.weatherCondition}>
-            <Feather name="sun" size={20} color={THEME.colors.cajuYellow} />
-            <Text style={styles.temperature}>32°C</Text>
-          </View>
-        </View>
-        <Text style={styles.weatherAdvice}>
-          Período propício para monitoramento da floração e colheita do caju precoce.
-        </Text>
-      </Card>
+      {/* Clima e Temperatura em Tempo Real */}
+      <WeatherCard
+        weather={weather}
+        loading={loading}
+        isRefreshing={isRefreshing}
+        onRefresh={refresh}
+      />
 
       {/* 2-Touch Direct Access Modules */}
       <Text style={styles.sectionTitle}>Módulos Principais</Text>

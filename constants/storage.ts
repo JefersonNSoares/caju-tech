@@ -1,6 +1,7 @@
 export const STORAGE_KEYS = {
   USER_PROFILE: '@cajutech:user_profile',
   AUTH_SESSION: '@cajutech:auth_session',
+  WEATHER_CACHE: '@cajutech:weather_cache',
 } as const;
 
 export const DEFAULT_USER_CONFIG = {
